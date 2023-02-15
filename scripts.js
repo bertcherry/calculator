@@ -77,7 +77,10 @@ function handleEqualsClick() {
             a = result;
         }
         b = values.at(index + 1);
-        result = operate(operator);
+        //if the last button was an operator, do not execute last operation
+        if (b !== undefined) {
+            result = operate(operator);
+        }
     }
     displayValue = result;
     display.textContent = displayValue;
@@ -96,3 +99,5 @@ operatorButtons.forEach((operatorButton) => {
 
 //Event listener on equals button
 equalsButton.addEventListener("click", handleEqualsClick);
+
+
