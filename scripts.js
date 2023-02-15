@@ -27,7 +27,11 @@ function multiply(a, b) {
 };
 
 function divide(a, b) {
-    return a / b;
+    if (b === 0) {
+        return "DIV/0 ERROR";
+    } else {
+        return a / b;
+    }
   };
 
 //Operation functions  
@@ -86,6 +90,7 @@ function handleEqualsClick() {
         if (b !== undefined) {
             result = operate(operator);
         }
+        if (result = "DIV/0 ERROR") {break;}
     }
     displayValue = result;
     display.textContent = displayValue;
