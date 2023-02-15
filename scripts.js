@@ -6,9 +6,10 @@ const numberButtons = numbers.querySelectorAll("button");
 const operators = document.querySelector(".operators");
 const operatorButtons = operators.querySelectorAll("button");
 const equalsButton = document.querySelector("#equals");
+const clearButton = document.querySelector("#clear");
 var lastEntry = null;
-const values = [];
-const operations = [];
+let values = [];
+let operations = [];
 let a;
 let b;
 
@@ -47,6 +48,8 @@ function handleNumberClick() {
     if (lastEntry == "+" || lastEntry == "-" || lastEntry == "*" || lastEntry == "/") {
         displayValue = "";
         operations.push(lastEntry)
+    } else if (lastEntry === "equals") {
+        handleClear();
     }
     displayValue += this.id;
     display.textContent = displayValue;
@@ -63,6 +66,8 @@ function handleOperatorClick() {
 }
 
 //Equals click evaluates the entered numbers and operations
+
+//add a divide by zero escape into the equals click if the div/o happens partway through a series of calculations
 function handleEqualsClick() {
     if (lastEntry != "+" && lastEntry != "-" && lastEntry != "*" && lastEntry != "/") {
         displayValue = Number(displayValue);
@@ -87,6 +92,14 @@ function handleEqualsClick() {
     lastEntry = this.id;
 }
 
+//Clear click or starting a new calculation after getting a result resets all
+function handleClear() {
+    values = [];
+    operations = [];
+    displayValue = "";
+    display.textContent = displayValue;
+}
+
 //Event listeners on number buttons
 numberButtons.forEach((numberButton) => {
     numberButton.addEventListener("click", handleNumberClick);
@@ -100,4 +113,5 @@ operatorButtons.forEach((operatorButton) => {
 //Event listener on equals button
 equalsButton.addEventListener("click", handleEqualsClick);
 
-
+//Event listener on clear button
+clearButton.addEventListener("click", handleClear);
