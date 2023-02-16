@@ -90,7 +90,7 @@ function handleEqualsClick() {
         if (b !== undefined) {
             result = operate(operator);
         }
-        if (result = "DIV/0 ERROR") {break;}
+        if (result === "DIV/0 ERROR") {break;}
     }
     displayValue = result;
     display.textContent = displayValue;
