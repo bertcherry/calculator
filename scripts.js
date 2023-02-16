@@ -5,14 +5,18 @@ const numbers = document.querySelector(".numbers");
 const numberButtons = numbers.querySelectorAll("button");
 const operators = document.querySelector(".operators");
 const operatorButtons = operators.querySelectorAll("button");
-const equalsButton = document.querySelector("#equals");
-const clearButton = document.querySelector("#clear");
+const equalsButton = document.querySelector(".equals");
+const clearButton = document.querySelector("#Backspace");
 const signButton = document.querySelector("#sign");
 var lastEntry = null;
 let values = [];
 let operations = [];
 let a;
 let b;
+const numberIds = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
+const operatorIds = ["+", "-", "*", "/"];
+const equalsId = "=";
+const clearId = "Backspace";
 
 //Math functions for two number inputs
 function add(a, b) {
@@ -52,7 +56,7 @@ function handleNumberClick() {
     if (lastEntry == "+" || lastEntry == "-" || lastEntry == "*" || lastEntry == "/") {
         displayValue = "";
         operations.push(lastEntry)
-    } else if (lastEntry === "equals") {
+    } else if (lastEntry === "=") {
         handleClear();
     }
     displayValue += this.id;
@@ -63,8 +67,7 @@ function handleNumberClick() {
 
 //Operator click stores the displayValue into values array as a number
 function handleOperatorClick() {
-    console.log(lastEntry);
-    if (lastEntry === "equals") {
+    if (lastEntry === "=") {
         let temp = displayValue;
         handleClear();
         displayValue = temp;
@@ -139,6 +142,26 @@ function handleSign() {
     }
 }
 
+//Guide keydown to correct functions
+function handleKeydown(e) {
+    e.preventDefault();
+    let key = document.querySelector(`button[id="${e.key}"]`);
+    if (key == null) {
+        return;
+    } else {
+        keyId = key.getAttribute("id");
+        if (numberIds.includes(keyId) == true) {
+            handleNumberClick.call(key);
+        } else if (operatorIds.includes(keyId) == true) {
+            handleOperatorClick.call(key);
+        } else if (equalsId.includes(keyId) == true) {
+            handleEqualsClick.call(key);
+        } else if (clearId.includes(keyId) == true) {
+            handleClear.call(key);
+        }
+    }
+}
+
 //Event listeners on number buttons
 numberButtons.forEach((numberButton) => {
     numberButton.addEventListener("click", handleNumberClick);
@@ -157,3 +180,6 @@ clearButton.addEventListener("click", handleClear);
 
 //Event listener on sign button
 signButton.addEventListener("click", handleSign);
+
+//Event listener for keys
+window.addEventListener("keydown", handleKeydown);
