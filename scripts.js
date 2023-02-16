@@ -48,7 +48,6 @@ function operate() {
 
 //Store numbers into display as string
 function handleNumberClick() {
-    console.log(lastEntry);
     if (lastEntry == "+" || lastEntry == "-" || lastEntry == "*" || lastEntry == "/") {
         displayValue = "";
         operations.push(lastEntry)
@@ -57,6 +56,7 @@ function handleNumberClick() {
     }
     displayValue += this.id;
     display.textContent = displayValue;
+    toggleDecimal();
     lastEntry = this.id;
 }
 
@@ -74,13 +74,12 @@ function handleOperatorClick() {
         displayValue = Number(displayValue);
         values.push(displayValue);
     } 
+    document.getElementById(".").disabled = false;
     lastEntry = this.id;
 }
 
 //Equals click evaluates the entered numbers and operations
-
-//add a divide by zero escape into the equals click if the div/o happens partway through a series of calculations
-function handleEqualsClick() {
+function handleEqualsClick() {  
     if (lastEntry != "+" && lastEntry != "-" && lastEntry != "*" && lastEntry != "/") {
         displayValue = Number(displayValue);
         values.push(displayValue);
@@ -105,6 +104,8 @@ function handleEqualsClick() {
     }
     displayValue = Math.round(result * 1000) / 1000;
     display.textContent = displayValue;
+    console.log(displayValue);
+    toggleDecimal();
     lastEntry = this.id;
 }
 
@@ -114,6 +115,16 @@ function handleClear() {
     operations = [];
     displayValue = "";
     display.textContent = displayValue;
+    toggleDecimal();
+}
+
+//Disable decimal button if there is already a decimal in display
+function toggleDecimal() {
+    if (displayValue.toString().includes(".") == true) {
+        document.getElementById(".").disabled = true;
+    } else {
+        document.getElementById(".").disabled = false;
+    }
 }
 
 //Event listeners on number buttons
