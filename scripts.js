@@ -7,6 +7,7 @@ const operators = document.querySelector(".operators");
 const operatorButtons = operators.querySelectorAll("button");
 const equalsButton = document.querySelector("#equals");
 const clearButton = document.querySelector("#clear");
+const signButton = document.querySelector("#sign");
 var lastEntry = null;
 let values = [];
 let operations = [];
@@ -127,6 +128,17 @@ function toggleDecimal() {
     }
 }
 
+//Change sign on display value when one is present
+//add a toggleSign function to disable the button if there's no displayValue? depending on CSS display choice
+function handleSign() {
+    if (displayValue === "") {
+        return;
+    } else {
+    displayValue *= -1;
+    display.textContent = displayValue;
+    }
+}
+
 //Event listeners on number buttons
 numberButtons.forEach((numberButton) => {
     numberButton.addEventListener("click", handleNumberClick);
@@ -142,3 +154,6 @@ equalsButton.addEventListener("click", handleEqualsClick);
 
 //Event listener on clear button
 clearButton.addEventListener("click", handleClear);
+
+//Event listener on sign button
+signButton.addEventListener("click", handleSign);
