@@ -92,7 +92,7 @@ function handleEqualsClick() {
         }
         if (result === "DIV/0 ERROR") {break;}
     }
-    displayValue = result;
+    displayValue = Math.round(result * 1000) / 1000;
     display.textContent = displayValue;
     lastEntry = this.id;
 }
