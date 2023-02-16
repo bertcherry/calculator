@@ -12,6 +12,7 @@ let values = [];
 let operations = [];
 let a;
 let b;
+console.log(values.at(1) === undefined);
 
 //Math functions for two number inputs
 function add(a, b) {
@@ -36,7 +37,6 @@ function divide(a, b) {
 
 //Operation functions  
 function operate() {
-    console.log(operator);
     if (operator === "+") {
         return add(a, b);
     } else if (operator === "-") {
@@ -91,6 +91,9 @@ function handleEqualsClick() {
             result = operate(operator);
         }
         if (result === "DIV/0 ERROR") {break;}
+    }
+    if (values.at(1) === undefined) {
+        return;
     }
     displayValue = Math.round(result * 1000) / 1000;
     display.textContent = displayValue;
