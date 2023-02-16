@@ -12,7 +12,6 @@ let values = [];
 let operations = [];
 let a;
 let b;
-console.log(values.at(1) === undefined);
 
 //Math functions for two number inputs
 function add(a, b) {
@@ -49,6 +48,7 @@ function operate() {
 
 //Store numbers into display as string
 function handleNumberClick() {
+    console.log(lastEntry);
     if (lastEntry == "+" || lastEntry == "-" || lastEntry == "*" || lastEntry == "/") {
         displayValue = "";
         operations.push(lastEntry)
@@ -62,10 +62,18 @@ function handleNumberClick() {
 
 //Operator click stores the displayValue into values array as a number
 function handleOperatorClick() {
-    if (lastEntry != "+" && lastEntry != "-" && lastEntry != "*" && lastEntry != "/") {
+    console.log(lastEntry);
+    if (lastEntry === "equals") {
+        let temp = displayValue;
+        handleClear();
+        displayValue = temp;
+        display.textContent = displayValue;
         displayValue = Number(displayValue);
         values.push(displayValue);
-    }
+    } else if (lastEntry != "+" && lastEntry != "-" && lastEntry != "*" && lastEntry != "/") {
+        displayValue = Number(displayValue);
+        values.push(displayValue);
+    } 
     lastEntry = this.id;
 }
 
