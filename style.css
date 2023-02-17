@@ -70,23 +70,27 @@ button {
     font-size: 1rem;
 }
 
+button:hover {
+    border: solid 4px #616161;
+}
+
 #Backspace,
 #sign {
     background-color: #fcc142;
     border-color: #bf8303;
 }
 
-.equals {
+button.equals {
     width: 164px;
     background-color: #25cf52;
     border-color: #157A30;
 }
 
-.operator {
+button.operator {
     background-color: #5aa0fc;
     border-color: #0454be;
 }
 
-.zero {
+button.zero {
     width: 164px;
 }
