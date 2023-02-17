@@ -69,7 +69,9 @@ button {
     font: inherit;
     font-size: 1rem;
     color: #000000;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 button:hover {
