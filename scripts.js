@@ -144,7 +144,6 @@ function toggleDecimal() {
 }
 
 //Change sign on display value when one is present
-//add a toggleSign function to disable the button if there's no displayValue? depending on CSS display choice
 function handleSign() {
     if (displayValue === "") {
         return;
