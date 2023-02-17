@@ -54,6 +54,7 @@ function operate() {
 //Store numbers into display as string
 function handleNumberClick() {
     if (lastEntry == "+" || lastEntry == "-" || lastEntry == "*" || lastEntry == "/") {
+        toggleSelected();
         displayValue = "";
         operations.push(lastEntry)
     } else if (lastEntry === "=") {
@@ -67,7 +68,9 @@ function handleNumberClick() {
 
 //Operator click stores the displayValue into values array as a number
 function handleOperatorClick() {
-    if (lastEntry === "=") {
+    if (lastEntry == "+" || lastEntry == "-" || lastEntry == "*" || lastEntry == "/") {
+        toggleSelected();
+    } else if (lastEntry === "=") {
         let temp = displayValue;
         handleClear();
         displayValue = temp;
@@ -80,11 +83,14 @@ function handleOperatorClick() {
     } 
     document.getElementById(".").disabled = false;
     lastEntry = this.id;
+    toggleSelected();
 }
 
 //Equals click evaluates the entered numbers and operations
 function handleEqualsClick() {  
-    if (lastEntry != "+" && lastEntry != "-" && lastEntry != "*" && lastEntry != "/") {
+    if (lastEntry == "+" || lastEntry == "-" || lastEntry == "*" || lastEntry == "/") {
+        toggleSelected();
+    } else if (lastEntry != "+" && lastEntry != "-" && lastEntry != "*" && lastEntry != "/") {
         displayValue = Number(displayValue);
         values.push(displayValue);
     }
@@ -101,7 +107,7 @@ function handleEqualsClick() {
         if (b !== undefined) {
             result = operate(operator);
         }
-        if (result === "DIV/0") {
+        if (result === "0") {
             break;
         } else {
             result = Math.round(result * 1000) / 1000;
@@ -165,6 +171,12 @@ function handleKeydown(e) {
             handleClear.call(key);
         }
     }
+}
+
+//Toggle class for selected on operators
+function toggleSelected() {
+    const element = document.getElementById(`${lastEntry}`);
+    element.classList.toggle("selected");
 }
 
 //Event listeners on number buttons
