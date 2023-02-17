@@ -32,8 +32,8 @@ function multiply(a, b) {
 };
 
 function divide(a, b) {
-    if (b === 0) {
-        return "DIV/0 ERROR";
+    if (b == 0) {
+        return "DIV/0";
     } else {
         return a / b;
     }
@@ -101,12 +101,17 @@ function handleEqualsClick() {
         if (b !== undefined) {
             result = operate(operator);
         }
-        if (result === "DIV/0 ERROR") {break;}
+        if (result === "DIV/0") {
+            break;
+        } else {
+            result = Math.round(result * 1000) / 1000;
+        }
+
     }
     if (values.at(1) === undefined) {
         return;
     }
-    displayValue = Math.round(result * 1000) / 1000;
+    displayValue = result;
     display.textContent = displayValue;
     console.log(displayValue);
     toggleDecimal();
