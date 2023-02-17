@@ -8,10 +8,14 @@
     <title>Calculator</title>
 </head>
 <body>
-    <div>
-        <div class="display">
+    <div class="calculator">
+        <div class="display"></div>
+        <div class="top-bar">
+            <button id="Backspace">AC</button>
+            <button id="sign">+/-</button>
+            <button class="equals" id="=">=</button>
         </div>
-        <div class="keypad">
+        <div class="lower">
             <div class="numbers">
                 <button id="1">1</button>
                 <button id="2">2</button>
@@ -22,19 +26,14 @@
                 <button id="7">7</button>
                 <button id="8">8</button>
                 <button id="9">9</button>
-                <button id="0">0</button>
+                <button class="zero" id="0">0</button>
                 <button id=".">.</button>
-            </div>
+            </div>        
             <div class="operators">
-                <button id="+">+</button>
-                <button id="-">-</button>
-                <button id="*">x</button>
-                <button id="/">/</button>
-            </div>
-            <div>
-                <button id="sign">+/-</button>
-                <button id="Backspace">AC</button>
-                <button class="equals" id="=">=</button>
+                <button class="operator" id="+">+</button>
+                <button class="operator" id="-">-</button>
+                <button class="operator" id="*">x</button>
+                <button class="operator" id="/">/</button>
             </div>
         </div>
     </div>
