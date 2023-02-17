@@ -88,9 +88,8 @@ function handleOperatorClick() {
 
 //Equals click evaluates the entered numbers and operations
 function handleEqualsClick() {  
-    if (lastEntry == "+" || lastEntry == "-" || lastEntry == "*" || lastEntry == "/") {
-        toggleSelected();
-    } else if (lastEntry != "+" && lastEntry != "-" && lastEntry != "*" && lastEntry != "/") {
+    removeSelected();
+    if (lastEntry != "+" && lastEntry != "-" && lastEntry != "*" && lastEntry != "/") {
         displayValue = Number(displayValue);
         values.push(displayValue);
     }
@@ -130,7 +129,9 @@ function handleClear() {
     operations = [];
     displayValue = "";
     display.textContent = displayValue;
+    lastEntry = null;
     toggleDecimal();
+    removeSelected();
 }
 
 //Disable decimal button if there is already a decimal in display
@@ -177,6 +178,17 @@ function handleKeydown(e) {
 function toggleSelected() {
     const element = document.getElementById(`${lastEntry}`);
     element.classList.toggle("selected");
+}
+
+function removeSelected() {
+    let element = document.getElementById("+");
+    element.classList.remove("selected");
+    element = document.getElementById("-");
+    element.classList.remove("selected");
+    element = document.getElementById("*");
+    element.classList.remove("selected");
+    element = document.getElementById("/");
+    element.classList.remove("selected");
 }
 
 //Event listeners on number buttons
