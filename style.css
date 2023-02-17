@@ -94,3 +94,8 @@ button.operator {
 button.zero {
     width: 164px;
 }
+
+button.selected {
+    background-color: #4a97fc;
+    border-width: 4px;
+}
